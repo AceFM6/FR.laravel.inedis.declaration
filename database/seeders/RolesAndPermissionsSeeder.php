@@ -89,7 +89,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->assignRole($admin);
         $user->assignRole($inedis);
         $user->assignRole($referencia);
-        $user->assignRole($referencia);
+        $user->assignRole($fournisseur);
 
     }
 }
