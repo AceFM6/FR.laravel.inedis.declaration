@@ -85,9 +85,11 @@ class RolesAndPermissionsSeeder extends Seeder
             'password' => Hash::make('ksoeqg44'), // password
             'remember_token' => Str::random(10),
         ]);
-        
+
         $user->assignRole($admin);
         $user->assignRole($inedis);
+        $user->assignRole($referencia);
+        $user->assignRole($referencia);
 
     }
 }
