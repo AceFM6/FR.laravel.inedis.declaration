@@ -12,8 +12,6 @@
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
                 </div>
-
-                <x-jet-section-border />
             @endif
 
         </div>

@@ -12,6 +12,13 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'inedis':{
+                    'blue': '#1D6F95',
+                    'green': '#BFC734',
+                    'gray': '#7E7E7E',
+                }    
+            }
         },
     },
 

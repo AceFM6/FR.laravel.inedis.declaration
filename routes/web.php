@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('home');
 })->name('home');
+
+Route::middleware(['auth:sanctum', 'verified', 'can:publish articles'])->get('/declaration', function () {
+    return view('declaration');
+})->name('declaration');
