@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-full py-10 mx-auto sm:px-6 lg:px-10 mt-10 sm:mt-0">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:grid md:grid-cols-2 md:gap-6">
             
             <x-jet-section-title>
                 <x-slot name="title">{{ __('Bienvenue sur le portail de déclaration') }}</x-slot>
@@ -13,7 +13,7 @@
                 reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.') }}</x-slot>
             </x-jet-section-title>
 
-            <div class="mt-5 md:mt-0 md:col-span-2 bg-white py-5 px-4">
+            <div class="mt-5 md:mt-0 md:col-span-1 bg-white py-5 px-4">
                 <p>
                     ergreebhbhbh
                 </p>
