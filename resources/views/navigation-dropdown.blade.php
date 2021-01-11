@@ -17,8 +17,13 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('profile')">
-                        {{ __('home') }}
+                    <x-jet-nav-link href="{{ route('recapitulatif') }}" :active="request()->routeIs('recapitulatif')">
+                        {{ __('Récapitulatif') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('recapitulatif') }}" :active="request()->routeIs('recapitulatif')">
+                        {{ __('FAQ') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -41,14 +46,12 @@
                     <x-slot name="content">
                         <!-- Account Management -->
                         <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Manage Account') }}
+                            {{ __('Gérer son compte') }}
                         </div>
 
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
                             <i class="fas fa-user w-6"></i> {{ __('Profil') }}
                         </x-jet-dropdown-link>
-
-                        <div class="border-t border-gray-100"></div>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

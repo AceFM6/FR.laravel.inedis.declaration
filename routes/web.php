@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Auth\Middleware\Authorize;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('home');
 })->name('home');
 
-Route::middleware(['auth:sanctum', 'verified', 'can:publish articles'])->get('/declaration', function () {
+Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/declaration', function () {
     return view('declaration');
 })->name('declaration');
+
+Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/recapitulatif', function () {
+    return view('recapitulatif');
+})->name('recapitulatif');
+
