@@ -22,7 +22,11 @@ Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/decla
     return view('declaration');
 })->name('declaration');
 
-Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/recapitulatif', function () {
-    return view('recapitulatif');
-})->name('recapitulatif');
+Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/importer', function () {
+    return view('importer');
+})->name('importer');
+
+Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/faq', function () {
+    return view('faq');
+})->name('faq');
 

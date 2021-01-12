@@ -13,16 +13,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('declaration') }}" :active="request()->routeIs('declaration')">
-                        {{ __('Déclaration') }}
+                        {{ __('Déclarer') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('recapitulatif') }}" :active="request()->routeIs('recapitulatif')">
-                        {{ __('Récapitulatif') }}
+                    <x-jet-nav-link href="{{ route('importer') }}" :active="request()->routeIs('importer')">
+                        {{ __('Importer') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('recapitulatif') }}" :active="request()->routeIs('recapitulatif')">
+                    <x-jet-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
                         {{ __('FAQ') }}
                     </x-jet-nav-link>
                 </div>
@@ -82,8 +82,16 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                {{ __('Home') }}
+            <x-jet-responsive-nav-link href="{{ route('declaration') }}" :active="request()->routeIs('declaration')">
+                {{ __('Déclarer') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('importer') }}" :active="request()->routeIs('importer')">
+                {{ __('Importer') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
+                {{ __('FAQ') }}
             </x-jet-responsive-nav-link>
         </div>
 

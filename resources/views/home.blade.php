@@ -13,10 +13,26 @@
                 reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.') }}</x-slot>
             </x-jet-section-title>
 
-            <div class="mt-5 md:mt-0 md:col-span-1 bg-white py-5 px-4">
-                <p>
-                    ergreebhbhbh
-                </p>
+            <div class="mt-5 md:mt-0 md:col-span-1 bg-white py-5 px-4 min-h-full">
+                <div class="text-inedis-gray text-center">
+                    <div>
+                        <h3 class="text-lg font text-inedis-gray font-medium">
+                            {{ __('Commencer vos déclarations') }}
+                        </h3>
+                        <x-jet-button class="ml-4">
+                            {{ __('Declarer') }}
+                        </x-jet-button>
+                    </div>
+
+                    <div class="min-h-full">
+                        <h3 class="text-lg font text-inedis-gray font-medium">
+                            {{ __('Importer vos déclarations') }}
+                        </h3>
+                        <x-jet-button class="ml-4">
+                            {{ __('Importer') }}
+                        </x-jet-button>
+                    </div> 
+                </div>
             </div>
 
         </div>   
