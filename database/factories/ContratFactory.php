@@ -1,0 +1,30 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Contrat;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ContratFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Contrat::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'annee' => 2020,
+            'c_chef' => $this->faker->name(),
+            'lm_code' => 2,
+        ];
+    }
+}

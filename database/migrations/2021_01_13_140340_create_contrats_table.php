@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrustsTable extends Migration
+class CreateContratsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +14,11 @@ class CreateTrustsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trusts', function (Blueprint $table) {
+        Schema::create('contrats', function (Blueprint $table) {
             $table->id();
+            $table->integer('annee');
+            $table->string('c_chef');
+            $table->integer('lm_code');
             $table->timestamps();
         });
     }
@@ -26,6 +30,7 @@ class CreateTrustsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trusts');
+        Schema::dropIfExists('contrats');
     }
+
 }

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-full py-10 mx-auto sm:px-6 lg:px-10 mt-10 sm:mt-0">
+    <div class="max-w-full py-4 lg:py-10 mx-auto sm:px-6 lg:px-10 mt-10 sm:mt-0">
         <div class="md:grid md:grid-cols-2 md:gap-6">
             
             <x-jet-section-title>

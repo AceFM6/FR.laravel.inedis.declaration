@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contrat;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -66,18 +67,23 @@ class RolesAndPermissionsSeeder extends Seeder
         $referencia->givePermissionTo('Voir les fournisseurs');
         $referencia->givePermissionTo('Voir les déclaration');
 
-        for($i = 0; $i < 10; $i++)
-        {
-            $user = \App\Models\User::factory()->create();
-            $user->assignRole($referencia);
-            $user->assignRole($inedis);
-        }
+        Contrat::factory()->count(100)->create();
+        $ids = range(1, 100);
 
-        for($i = 0; $i < 500; $i++)
-        {
-            $user = \App\Models\User::factory()->create();
-            $user->assignRole($referencia);
-        }
+        \App\Models\User::factory()->count(500)->create()->each(
+            function ($user) use ($ids, $fournisseur){
+                shuffle($ids);
+                $user->contrats()->attach(array_slice($ids, 0, rand(0, 2)));
+                $user->assignRole($fournisseur);
+            }
+        );
+
+        \App\Models\User::factory()->count(10)->create()->each(
+            function ($user) use ($inedis, $referencia){
+                $user->assignRole($inedis);
+                $user->assignRole($referencia);
+            }
+        );
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Martin Florian',
