@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Contrat;
+use App\Models\Magasin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -20,33 +21,33 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // administration permission
+        // administration permissions
         Permission::create(['name' => 'Voir les utilisateurs']);
         Permission::create(['name' => 'Ajouter un utilisateur']);
         Permission::create(['name' => 'Editer un utilisateur']);
         Permission::create(['name' => 'Supprimer un utilisateur']);
 
-        // Roles
+        // Roles permissions
         Permission::create(['name' => 'Voir les rôles']);
         Permission::create(['name' => 'Ajouter un rôle']);
         Permission::create(['name' => 'Editer un rôle']);
         Permission::create(['name' => 'Supprimer un rôle']);
 
-        // Contrats
+        // Contrats permissions 
         Permission::create(['name' => 'Voir les contrats']);
         Permission::create(['name' => 'Ajoute un contrat']);
         Permission::create(['name' => 'Editer un contrat']);
         Permission::create(['name' => 'Supprimer un contrat']);
 
-        // Acces
+        // Acces permissions
         Permission::create(['name' => 'Accès administration']);
 
-        // Déclarations
+        // Déclarations permissions
         Permission::create(['name' => 'Voir les fournisseurs']);
         Permission::create(['name' => 'Voir les déclaration']);
         Permission::create(['name' => 'Editer une déclaration']);
 
-        // Process
+        // Process permissions
         Permission::create(['name' => 'Lancer les déclaration']);
         Permission::create(['name' => 'Editer une période déclaration']);
         Permission::create(['name' => 'Arrêter une déclaration en cours']);
@@ -58,7 +59,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $referencia = Role::create(['name' => 'referencia']);
         $fournisseur = Role::create(['name' => 'fournisseur']);
 
-        //Ajout des droits aux roles
+        // Ajout des droits aux roles
         $admin->givePermissionTo(Permission::all());
 
         $inedis->givePermissionTo('Accès administration');
@@ -67,9 +68,12 @@ class RolesAndPermissionsSeeder extends Seeder
         $referencia->givePermissionTo('Voir les fournisseurs');
         $referencia->givePermissionTo('Voir les déclaration');
 
+
+        // génération des contrats
         Contrat::factory()->count(100)->create();
         $ids = range(1, 100);
 
+        // génération des utilisateurs fournisseurs et association aux contrat
         \App\Models\User::factory()->count(500)->create()->each(
             function ($user) use ($ids, $fournisseur){
                 shuffle($ids);
@@ -78,6 +82,7 @@ class RolesAndPermissionsSeeder extends Seeder
             }
         );
 
+        // génération des utilisateurs de la central référencia
         \App\Models\User::factory()->count(10)->create()->each(
             function ($user) use ($inedis, $referencia){
                 $user->assignRole($inedis);
@@ -85,10 +90,11 @@ class RolesAndPermissionsSeeder extends Seeder
             }
         );
 
+        // génération des utilisateurs test
         $user = \App\Models\User::factory()->create([
             'name' => 'Fournisseur test',
             'email' => 'fournisseur.test@test.com',
-            'password' => Hash::make('test'), // password
+            'password' => Hash::make('test'),
             'remember_token' => Str::random(10),
         ]);
 
@@ -96,15 +102,19 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->contrats()->attach(array_slice($ids, 0, rand(1, 2)));
         $user->assignRole($fournisseur);
 
+        // génération de l'administrateur de base
         $user = \App\Models\User::factory()->create([
             'name' => 'Martin Florian',
             'email' => 'martin.flo6@gmail.com',
-            'password' => Hash::make('ksoeqg44'), // password
+            'password' => Hash::make('ksoeqg44'),
             'remember_token' => Str::random(10),
         ]);
 
         $user->assignRole($admin);
         $user->assignRole($inedis);
+
+        //génération des magasins
+        Magasin::factory()->count(300)->create();
 
     }
 }
