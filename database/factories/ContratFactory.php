@@ -22,8 +22,9 @@ class ContratFactory extends Factory
     public function definition()
     {
         return [
+            'name' => $this->faker->company(),
             'annee' => 2020,
-            'c_chef' => $this->faker->name(),
+            'chef' => $this->faker->name(),
             'lm_code' => 2,
         ];
     }

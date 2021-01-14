@@ -86,6 +86,17 @@ class RolesAndPermissionsSeeder extends Seeder
         );
 
         $user = \App\Models\User::factory()->create([
+            'name' => 'Fournisseur test',
+            'email' => 'fournisseur.test@test.com',
+            'password' => Hash::make('test'), // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        shuffle($ids);
+        $user->contrats()->attach(array_slice($ids, 0, rand(1, 2)));
+        $user->assignRole($fournisseur);
+
+        $user = \App\Models\User::factory()->create([
             'name' => 'Martin Florian',
             'email' => 'martin.flo6@gmail.com',
             'password' => Hash::make('ksoeqg44'), // password
@@ -94,8 +105,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $user->assignRole($admin);
         $user->assignRole($inedis);
-        $user->assignRole($referencia);
-        $user->assignRole($fournisseur);
 
     }
 }
