@@ -68,12 +68,20 @@ class RolesAndPermissionsSeeder extends Seeder
         $referencia->givePermissionTo('Voir les fournisseurs');
         $referencia->givePermissionTo('Voir les déclaration');
 
+        // génération des magasins
+        Magasin::factory()->count(100)->create();
 
         // génération des contrats
-        Contrat::factory()->count(100)->create();
         $ids = range(1, 100);
+        Contrat::factory()->count(100)->create()->each(
+            function ($contrat) use ($ids){
+                shuffle($ids);
+                $contrat->magasins()->attach(array_slice($ids, 0, rand(0, 20)));
+            }
+        );
 
-        // génération des utilisateurs fournisseurs et association aux contrat
+        // génération des utilisateurs fournisseurs et association aux contrat 
+        $ids = range(1, 100);
         \App\Models\User::factory()->count(500)->create()->each(
             function ($user) use ($ids, $fournisseur){
                 shuffle($ids);
@@ -113,8 +121,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->assignRole($admin);
         $user->assignRole($inedis);
 
-        //génération des magasins
-        Magasin::factory()->count(300)->create();
+        
 
     }
 }

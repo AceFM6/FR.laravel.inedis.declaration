@@ -31,3 +31,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur'])->get('/faq',
     return view('faq');
 })  ->name('faq');
 
+Route::middleware(['auth:sanctum', 'verified', 'role:fournisseur', 'use_contrat'])
+    ->get('/declaration/{id}', [DeclarationController::class, 'showDetails'])
+    ->name('declaration-detail');
+
