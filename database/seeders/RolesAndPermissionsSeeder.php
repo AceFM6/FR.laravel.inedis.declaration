@@ -101,7 +101,7 @@ class RolesAndPermissionsSeeder extends Seeder
         // génération des utilisateurs test
         $user = \App\Models\User::factory()->create([
             'name' => 'Fournisseur test',
-            'email' => 'fournisseur.test@test.com',
+            'email' => 'fournisseur@test.com',
             'password' => Hash::make('test'),
             'remember_token' => Str::random(10),
         ]);
@@ -125,3 +125,5 @@ class RolesAndPermissionsSeeder extends Seeder
 
     }
 }
+
+
