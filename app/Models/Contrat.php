@@ -20,4 +20,9 @@ class Contrat extends Model
             ->withPivot('cm_ca_reel', 'cm_ca_remonte', 'cm_ca_1', 'cm_ca_2', 'cm_ca_3', 'cm_ca_4', 'cm_ca_5', 'cm_ca_6', 'cm_ca_7', 'cm_ca_8' )
             ->withTimestamps();
     }
+
+    public function regleContrat()
+    {
+        return $this->hasOne(RegleContrat::class);
+    }
 }

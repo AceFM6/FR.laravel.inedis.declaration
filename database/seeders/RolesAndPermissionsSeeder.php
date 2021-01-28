@@ -77,6 +77,10 @@ class RolesAndPermissionsSeeder extends Seeder
             function ($contrat) use ($ids){
                 shuffle($ids);
                 $contrat->magasins()->attach(array_slice($ids, 0, rand(0, 20)));
+                $contrat->regleContrat()->create([
+                    'rce_libelle_1'=> 'Quantite',
+                    'rce_libelle_2'=> 'CA non despositoire',
+                    ]);
             }
         );
 
