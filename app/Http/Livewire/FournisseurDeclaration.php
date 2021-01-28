@@ -11,11 +11,11 @@ class FournisseurDeclaration extends Component
 {
     public $search;
     public $contrat;
-    public $idMagasin;
+    public $magasin_id;
 
-    public function viewDeclaration($idMagasin)
+    public function viewDeclaration($magasin_id)
     {
-        $this->idMagasin = $idMagasin;
+        $this->magasin_id = $magasin_id;
     }
 
     public function render()
@@ -24,7 +24,7 @@ class FournisseurDeclaration extends Component
  
         foreach($this->contrat->magasins as $magasin)
         {
-            if($magasin->id == $this->idMagasin)
+            if($magasin->id == $this->magasin_id)
             {   
                 $pivot = $magasin->pivot;          
             }
