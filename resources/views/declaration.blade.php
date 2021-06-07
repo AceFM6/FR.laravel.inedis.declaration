@@ -4,8 +4,9 @@
             
             @if (count(Auth::user()->contrats) > 1)
                 @foreach (Auth::user()->contrats as $contrat)
-                    <a href="{{ route('declaration-detail', ['id' => $contrat->id ]) }}">{{ $contrat->name }}</a>
-                    <br>
+                        <a href="{{ route('declaration-detail', ['id' => $contrat->id ]) }}" class="text-inedis-gray bg-white p-5 flex items-center justify-center">
+                            <i class="fas fa-file-contract"></i> {{ $contrat->name }}
+                        </a>
                 @endforeach
             @else
                 Pas de contrat à déclarer

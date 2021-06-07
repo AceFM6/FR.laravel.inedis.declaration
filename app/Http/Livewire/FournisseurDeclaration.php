@@ -59,19 +59,31 @@ class FournisseurDeclaration extends Component
             $this->cm_ca_7 = NULL;
             $this->cm_ca_8 = NULL;
         }
-        
-
     }
 
     public function render()
     {
 
+        $CAnonRistournable = 0;
+        $CARistournable = 0;
+        foreach($this->contrat->magasins as $magasin)
+        {
+            $CARistournable += $magasin->pivot->cm_ca_remonte;
+            $CAnonRistournable += $magasin->pivot->cm_ca_reel;
+        }
+
+        $select_magasin = Magasin::where('id', '=', $this->magasin_id)->first();
+
         $search = '%' . $this->search . '%';
-        $magasins = Magasin::where('name', 'LIKE', $search)
+        $search_magasins = Magasin::where('name', 'LIKE', $search)
             ->orWhere('id', 'LIKE', $search)
+            ->take(10)
             ->get();
 
         return view('livewire.fournisseur-declaration')
-            ->with('magasins', $magasins);    
+            ->with('search_magasins', $search_magasins)
+            ->with('select_magasin', $select_magasin)
+            ->with('CARistournable', $CARistournable)
+            ->with('CAnonRistournable', $CAnonRistournable);  
     }
 }
